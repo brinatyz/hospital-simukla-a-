@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#f8a9c8"><title>Hospital Sem Lotação | IA</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body><div class="app-shell">
+<aside class="sidebar" id="sidebar">
+ <div class="brand"><div class="brand-mark">♡</div><div><strong>Hospital sem<br>Lotação</strong><span>PAINEL INTELIGENTE</span></div></div>
+ <div class="side-label">MENU PRINCIPAL</div>
+ <nav class="nav-menu">
+  <button class="nav-link active" data-page="dashboard"><span class="nav-icon">⌂</span> Visão geral</button>
+  <button class="nav-link" data-page="previsao"><span class="nav-icon">⌁</span> Previsões da IA</button>
+  <button class="nav-link" data-page="treinamento"><span class="nav-icon">✧</span> Treinar inteligência</button>
+  <button class="nav-link" data-page="leitos"><span class="nav-icon">▦</span> Gestão de leitos</button>
+  <button class="nav-link" data-page="historico"><span class="nav-icon">◷</span> Histórico</button>
+  <button class="nav-link" data-page="dados"><span class="nav-icon">＋</span> Simular cenário</button>
+ </nav>
+ <div class="side-card"><div class="side-card-icon">✿</div><strong>Um cuidado que<br>começa antes.</strong><p>Dados inteligentes para decisões melhores.</p><span class="mini-hearts">♡ ♡ ♡</span></div>
+ <div class="sidebar-bottom"><div class="status-dot"></div><div><strong id="modelStatusSide">Modelo carregando</strong><span>Aprendizado de máquina</span></div></div>
+</aside>
+<main class="main-content">
+<header class="topbar"><button class="mobile-menu" id="mobileMenu">☰</button><div class="breadcrumb">Painel administrativo <span>/</span> <strong id="pageCrumb">Visão geral</strong></div><div class="topbar-right"><span class="today" id="todayLabel"></span><div class="avatar">HS</div></div></header>
+
+<section class="page active-page" id="page-dashboard">
+ <div class="welcome-row"><div><div class="eyebrow">✦ INTELIGÊNCIA A FAVOR DA SAÚDE</div><h1>Olá! Bem-vinda ao <span>painel.</span></h1><p class="subtitle">Acompanhe os leitos e antecipe possíveis situações de lotação com Machine Learning.</p></div><div class="welcome-sticker"><span>♡</span><small>cuidar também<br>é se planejar!</small></div></div>
+ <div class="demo-banner"><span>ⓘ</span><div><strong>Base de demonstração</strong><small>O modelo já está treinado com dados sintéticos de exemplo. Para uso real, importe dados históricos anonimizados e validados.</small></div></div>
+ <div class="section-heading"><div><h2>Resumo hospitalar</h2><p>Valores do cenário atual</p></div><span class="period-pill">HOJE · <span id="dateShort"></span></span></div>
+ <div class="stats-grid">
+  <article class="stat-card pink"><div class="stat-top"><span>Leitos ocupados</span><span class="stat-icon">▣</span></div><div class="stat-number" id="occupiedCount">84</div><div class="stat-foot">de <b id="totalBedsA">120</b> leitos totais</div><div class="stat-decoration">♡</div></article>
+  <article class="stat-card lilac"><div class="stat-top"><span>Leitos disponíveis</span><span class="stat-icon">＋</span></div><div class="stat-number" id="availableCount">36</div><div class="stat-foot">Capacidade disponível</div><div class="stat-decoration">✧</div></article>
+  <article class="stat-card peach"><div class="stat-top"><span>Taxa de ocupação</span><span class="stat-icon">◉</span></div><div class="stat-number"><span id="occupancyRate">70</span><small>%</small></div><div class="stat-foot">Ocupação do cenário atual</div><div class="stat-decoration">♡</div></article>
+  <article class="stat-card mint"><div class="stat-top"><span>Risco previsto</span><span class="stat-icon">⌁</span></div><div class="stat-number risk-number" id="riskLabel">—</div><div class="stat-foot">Previsão para amanhã</div><div class="stat-decoration">✿</div></article>
+ </div>
+ <div class="content-grid">
+  <article class="panel"><div class="panel-heading"><div><h3>Ocupação dos leitos</h3><p>Ocupados e disponíveis</p></div><span class="panel-tag">CENÁRIO ATUAL</span></div><div class="donut-area"><div class="donut" id="occupancyDonut"><div class="donut-center"><strong id="donutPercent">70%</strong><span>ocupação</span></div></div><div class="legend"><div><i class="legend-dot occupied"></i><span>Ocupados</span><strong id="legendOccupied">84</strong></div><div><i class="legend-dot available"></i><span>Disponíveis</span><strong id="legendAvailable">36</strong></div><div class="legend-note">Capacidade total: <b id="totalBedsB">120 leitos</b></div></div></div></article>
+  <article class="panel"><div class="panel-heading"><div><h3>Previsão feita pelo modelo</h3><p>Resultado do Machine Learning</p></div><span class="sparkle">✧</span></div><div class="prediction-highlight"><div><span class="prediction-caption">OCUPAÇÃO AMANHÃ</span><strong id="tomorrowOccupancy">—</strong><small id="tomorrowText">Gere uma previsão para visualizar.</small></div><div class="risk-gauge" id="riskGauge">♡</div></div><div class="prediction-list"><div><span>Próximas 24 horas</span><b id="risk24" class="risk-medium">—</b></div><div><span>Próximas 48 horas</span><b id="risk48" class="risk-medium">—</b></div><div><span>Próximas 72 horas</span><b id="risk72" class="risk-medium">—</b></div></div><button class="text-button" data-goto="previsao">Ver previsão completa →</button></article>
+ </div>
+ <div class="content-grid lower-grid"><article class="panel"><div class="panel-heading"><div><h3>Previsão de ocupação</h3><p>Projeção calculada pelo modelo treinado</p></div><span class="chart-legend">IA · previsão</span></div><div class="chart-wrap"><canvas id="forecastChart"></canvas></div></article><article class="panel"><div class="panel-heading"><div><h3>Saúde do modelo</h3><p>Informações do treinamento</p></div><span class="sparkle">♡</span></div><div class="model-metrics"><div><span>Registros históricos</span><b id="metricRecords">—</b></div><div><span>Erro médio (MAE)</span><b id="metricMae">—</b></div><div><span>Amostras de teste</span><b id="metricTest">—</b></div></div><p class="metric-explain">MAE indica, em pontos percentuais, a diferença média entre a previsão e o valor observado no conjunto de teste.</p><button class="text-button" data-goto="treinamento">Ver treinamento →</button></article></div>
+ <footer class="footer-note">Feito com cuidado ♡ <span>Projeto educacional · Não usar em decisões clínicas</span></footer>
+</section>
+
+<section class="page" id="page-previsao">
+ <div class="page-title"><div class="eyebrow">✦ RESULTADO DO MODELO</div><h1>Previsões da <span>IA.</span></h1><p class="subtitle">O modelo estima a ocupação futura a partir dos padrões aprendidos nos dados históricos.</p></div>
+ <div class="content-grid"><article class="panel wide-panel"><div class="panel-heading"><div><h3>Previsão para os próximos três dias</h3><p>Resultado calculado pelo modelo treinado no servidor</p></div><span class="panel-tag">MACHINE LEARNING</span></div><div id="forecastCards" class="forecast-cards"><p class="muted">Gere uma previsão na página Simular cenário.</p></div><div class="chart-wrap large-chart"><canvas id="forecastChartPage"></canvas></div></article>
+ <article class="panel"><div class="panel-heading"><div><h3>Como o modelo aprende?</h3><p>Etapas do aprendizado de máquina</p></div><span class="sparkle">♡</span></div><ol class="steps vertical"><li><span>1</span><div><b>Recebe dados históricos</b><small>Ocupação, atendimentos, internações, altas e dia da semana.</small></div></li><li><span>2</span><div><b>Treina uma regressão</b><small>Ajusta os parâmetros para relacionar os dados de entrada à ocupação do dia seguinte.</small></div></li><li><span>3</span><div><b>É avaliado</b><small>Uma parte final dos registros fica separada para medir o erro em dados não usados no ajuste.</small></div></li><li><span>4</span><div><b>Faz a estimativa</b><small>Usa os dados atuais e as variáveis informadas para estimar os próximos dias.</small></div></li></ol></article>
+ <article class="panel"><div class="panel-heading"><div><h3>Variáveis utilizadas</h3><p>Informações que alimentam o modelo</p></div></div><div class="variable-chips"><span>Ocupação atual (%)</span><span>Atendimentos</span><span>Internações</span><span>Altas</span><span>Dia da semana</span></div><p class="metric-explain">A previsão é uma estimativa estatística, não uma certeza. Mudanças inesperadas podem alterar a demanda.</p></article></div>
+</section>
+
+<section class="page" id="page-treinamento">
+ <div class="page-title"><div class="eyebrow">✦ APRENDIZADO DE MÁQUINA</div><h1>Treinar a <span>inteligência.</span></h1><p class="subtitle">Importe uma planilha histórica e treine novamente o modelo com seus próprios dados.</p></div>
+ <div class="demo-banner"><span>ⓘ</span><div><strong>Formato esperado</strong><small>CSV com as colunas: total_leitos, leitos_ocupados, atendimentos, internacoes, altas e, opcionalmente, data. São necessários pelo menos 30 registros em ordem cronológica.</small></div></div>
+ <div class="content-grid training-layout">
+  <article class="panel"><div class="panel-heading"><div><h3>Enviar base histórica (CSV)</h3><p>O treinamento acontece no servidor local</p></div><span class="sparkle">✧</span></div>
+   <label class="upload-zone" for="csvFile"><span class="upload-icon">↑</span><b>Escolha seu arquivo CSV</b><small id="fileName">Nenhum arquivo selecionado</small><input id="csvFile" type="file" accept=".csv,text/csv"></label>
+   <button class="primary-button full-button" id="trainButton">Treinar modelo com esta base →</button><p class="form-feedback" id="trainFeedback" role="status"></p>
+   <div class="csv-actions"><a href="/api/demo-csv" download>Baixar base de exemplo CSV</a><span>·</span><button id="useDemo">Recarregar base de exemplo</button></div>
+  </article>
+  <article class="panel"><div class="panel-heading"><div><h3>Resultado do treinamento</h3><p>Indicadores da última execução</p></div><span class="panel-tag" id="trainedBadge">CARREGANDO</span></div>
+   <div class="training-results"><div><span>Registros usados</span><strong id="trainRecords">—</strong></div><div><span>Amostras para treino</span><strong id="trainSamples">—</strong></div><div><span>Amostras para teste</span><strong id="testSamples">—</strong></div><div><span>Erro médio absoluto (MAE)</span><strong id="trainMae">—</strong></div></div>
+   <p class="metric-explain">O MAE mostra quanto, em média, a previsão ficou distante do valor observado, em pontos percentuais. Quanto menor, melhor — mas ele precisa ser comparado com uma referência simples e validado em dados reais.</p>
+  </article>
+ </div>
+ <article class="panel note-panel"><span class="note-icon">♡</span><div><h3>Privacidade e qualidade dos dados</h3><p>Não envie nomes, CPF, prontuários ou dados que identifiquem pacientes. Use informações agregadas e anonimizadas, com autorização e validação adequadas. A base de exemplo é sintética e serve apenas para demonstração escolar.</p></div></article>
+</section>
+
+<section class="page" id="page-leitos">
+ <div class="page-title"><div class="eyebrow">✦ CAPACIDADE HOSPITALAR</div><h1>Gestão de <span>leitos.</span></h1><p class="subtitle">Resumo do cenário inserido na simulação.</p></div>
+ <div class="stats-grid compact-stats"><article class="stat-card pink"><div class="stat-top"><span>Total de leitos</span><span class="stat-icon">▦</span></div><div class="stat-number" id="bedsTotalPage">120</div><div class="stat-foot">Capacidade cadastrada</div></article><article class="stat-card lilac"><div class="stat-top"><span>Ocupados</span><span class="stat-icon">▣</span></div><div class="stat-number" id="bedsOccupiedPage">84</div><div class="stat-foot">Em utilização</div></article><article class="stat-card mint"><div class="stat-top"><span>Disponíveis</span><span class="stat-icon">＋</span></div><div class="stat-number" id="bedsAvailablePage">36</div><div class="stat-foot">Ainda não ocupados</div></article></div>
+ <article class="panel"><div class="panel-heading"><div><h3>Distribuição demonstrativa</h3><p>Exemplo de organização por setor</p></div><span class="panel-tag">SIMULAÇÃO</span></div><div class="department-list" id="departmentList"></div></article>
+</section>
+
+<section class="page" id="page-historico">
+ <div class="page-title"><div class="eyebrow">✦ ACOMPANHAMENTO</div><h1>Histórico de <span>dados.</span></h1><p class="subtitle">Últimos registros da base que treinou o modelo.</p></div>
+ <article class="panel"><div class="panel-heading"><div><h3>Registros históricos</h3><p>Dados carregados no modelo</p></div><span class="panel-tag">BASE ATIVA</span></div><div class="table-wrap"><table><thead><tr><th>Data</th><th>Ocupados</th><th>Disponíveis</th><th>Ocupação</th><th>Atendimentos</th></tr></thead><tbody id="historyTable"></tbody></table></div></article>
+</section>
+
+<section class="page" id="page-dados">
+ <div class="page-title"><div class="eyebrow">✦ SIMULADOR DE CENÁRIOS</div><h1>Simular <span>cenário.</span></h1><p class="subtitle">Informe a situação atual e os volumes esperados para gerar uma previsão com o modelo treinado.</p></div>
+ <div class="content-grid form-layout"><article class="panel"><div class="panel-heading"><div><h3>Dados para previsão</h3><p>Preencha os campos e consulte a IA</p></div><span class="sparkle">♡</span></div>
+ <form id="dataForm" class="data-form">
+  <label>Total de leitos<input type="number" id="totalBedsInput" min="1" value="120" required></label>
+  <label>Leitos ocupados agora<input type="number" id="occupiedInput" min="0" value="84" required></label>
+  <label>Atendimentos esperados por dia<input type="number" id="patientsInput" min="0" value="96" required></label>
+  <label>Internações esperadas por dia<input type="number" id="admissionsInput" min="0" value="18" required></label>
+  <label>Altas esperadas por dia<input type="number" id="dischargesInput" min="0" value="12" required></label>
+  <button class="primary-button" type="submit">Gerar previsão com IA →</button><p class="form-feedback" id="formFeedback" role="status"></p>
+ </form></article>
+ <article class="panel how-panel"><div class="how-illustration">♡</div><h3>O que acontece ao clicar?</h3><p>Os valores são enviados ao modelo treinado. Ele calcula uma estimativa para os próximos três dias e devolve o resultado para o painel.</p><div class="privacy-tip"><span>✿</span><p><b>Importante</b><br>Este é um protótipo educacional. Não use os resultados para decisões reais de atendimento, internação ou alocação de leitos.</p></div><button class="secondary-button" id="resetDemo">Restaurar cenário de exemplo</button></article></div>
+</section>
+</main></div><script src="script.js"></script></body></html>
